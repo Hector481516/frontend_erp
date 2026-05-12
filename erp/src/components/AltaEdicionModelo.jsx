@@ -3,7 +3,8 @@ import { useState, useEffect } from "react"
 export default function AltaEdicionModelo({
     mode = "create",
     modelo = null,
-    onSubmit
+    onSubmit,
+    confirmDelete
 }) {
     const emptyForm = {
         nombre: "",
@@ -38,8 +39,7 @@ export default function AltaEdicionModelo({
     }
     function handleDelete(e) {
         e.preventDefault()
-        console.log(formData)
-        // confirmDelete(formData)
+        confirmDelete(formData)
     }
     if (mode === "delete") {
         return (
