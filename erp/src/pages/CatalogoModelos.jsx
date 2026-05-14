@@ -4,7 +4,7 @@ import AltaEdicionModelo from '../components/AltaEdicionModelo'
 import Modal from '../components/Modal'
 import ListaModelo from '../components/ListaModelo'
 import toggleModal from '../utils/utils'
-import { getModelos, createModelo } from '../services/modelos'
+import { getModelos, createModelo, apiUpdateModelo, apiDeleteModelo } from '../services/modelos'
 const token = localStorage.getItem("token")
 
 function CatalogoModelos() {
@@ -43,32 +43,49 @@ function CatalogoModelos() {
         setModeloSeleccionado(modelo)
         setModalType("delete")
     }
-    function confirmDelete(deleteModelo) {
+    async function confirmDelete(deleteModelo) {
 
         const filteredModels = modelos.filter(
             modelo => modelo.id_modelo !== deleteModelo.id_modelo
         )
+        await apiDeleteModelo(deleteModelo.id_modelo)
         setModelos(filteredModels)
         setIsOpen(false)
+        await cargarModelos()
     }
-    function updateModelo(updatedModelo) {
-        const updatedModelos = modelos.map(modelo => {
-            if (modelo.id_modelo === updatedModelo.id_modelo) {
-                //Aquí se podría hacer la llamada a la API para actualizar el modelo en el backend
-                return updatedModelo
-            }
-            return modelo
-        })
-
-        setModelos(updatedModelos)
+    async function updateModelo(updatedModelo, id_modelo) {
+        try {
+            await apiUpdateModelo(
+                id_modelo,
+                updatedModelo
+            )
+            await cargarModelos()
+        } catch (error) {
+            console.error(error)
+        }
     }
-    function onSubmit(formData) {
+    async function onSubmit(formData) {
         if (modalType === "edit") {
-            updateModelo(formData)
+            const payload = {
+                nombre: formData.descripcion,
+                modelo: formData.numero_modelo,
+                clave: formData.clave,
+                id_clasificacion: formData.id_clasificacion,
+                id_marca: formData.id_marca,
+                id_color: formData.id_color
+            }
+            await updateModelo(payload, formData.id_modelo)
         } else {
-            createModelo(formData).then(nuevoModelo => {
-                cargarModelos()
-            })
+            const payload = {
+                nombre: formData.descripcion,
+                modelo: formData.numero_modelo,
+                clave: formData.clave,
+                id_clasificacion: formData.id_clasificacion,
+                id_marca: formData.id_marca,
+                id_color: formData.id_color
+            }
+            await createModelo(payload)
+            await cargarModelos()
         }
         setIsOpen(false)
     }

@@ -11,12 +11,12 @@ export default function AltaEdicionModelo({
     confirmDelete
 }) {
     const emptyForm = {
-        nombre: "",
-        clasificacion: "",
-        marca: "",
-        color: "",
+        descripcion: "",
         clave: "",
-        modelo: "",
+        numero_modelo: "",
+        id_clasificacion:0,
+        id_marca:0,
+        id_color:0
     }
     const [marcas, setMarcas] = useState([])
     const [colores, setColores] = useState([])
@@ -49,10 +49,12 @@ export default function AltaEdicionModelo({
     useEffect(() => {
 
         if (modelo) {
+            cargarMarcas()
+            cargarColores()
+            cargarClasificaciones()
             setFormData(modelo)
 
         } else {
-
             setFormData(emptyForm)
             cargarMarcas()
             cargarColores()
@@ -90,28 +92,28 @@ export default function AltaEdicionModelo({
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
-                    name="nombre"
+                    name="descripcion"
                     placeholder="Descripción del modelo"
-                    value={formData.nombre}
+                    value={formData.descripcion}
                     onChange={handleChange}
                 />
                 <input
-                    type="text"
-                    name="modelo"
+                    type="number"
+                    name="numero_modelo"
                     placeholder="Número de modelo"
-                    value={formData.modelo}
+                    value={formData.numero_modelo}
                     onChange={handleChange}
                 />
                 <input
-                    type="text"
+                    type="number"
                     name="clave"
                     placeholder="Clave del modelo"
                     value={formData.clave}
                     onChange={handleChange}
                 />
                 <select
-                    name="clasificacion"
-                    value={formData.clasificacion}
+                    name="id_clasificacion"
+                    value={formData.id_clasificacion}
                     onChange={handleChange}
                 >
                     <option value="">
@@ -129,8 +131,8 @@ export default function AltaEdicionModelo({
                     }
                 </select>
                 <select
-                    name="marca"
-                    value={formData.marca}
+                    name="id_marca"
+                    value={formData.id_marca}
                     onChange={handleChange}
                 >
                     <option value="">
@@ -148,8 +150,8 @@ export default function AltaEdicionModelo({
                     }
                 </select>
                 <select
-                    name="color"
-                    value={formData.color}
+                    name="id_color"
+                    value={formData.id_color}
                     onChange={handleChange}
                 >
                     <option value="">
