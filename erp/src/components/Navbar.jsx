@@ -32,19 +32,16 @@ export default function Navbar() {
                         Modelos
                     </Link>
                 </li>
-
                 <li>
-                    <a href="#">
-                        Categorías
-                    </a>
+                    <Link to="/catalogo_colores">
+                        Colores
+                    </Link>
                 </li>
-
                 <li>
-                    <a href="#">
-                        Ventas
-                    </a>
+                    <Link to="/catalogo_marcas">
+                        Marcas
+                    </Link>
                 </li>
-
             </ul>
 
             {/* USER */}

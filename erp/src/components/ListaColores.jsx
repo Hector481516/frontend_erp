@@ -1,5 +1,5 @@
-import ModeloRow from "./ModeloRow"
-export default function ListaModelo({ modelos, onEdit, onDelete }) {
+import ColorRow from "./ColorRow"
+export default function ListaColores({ colores, onEdit, onDelete }) {
     return (
         <section className="table-section">
             {/* <h2>Listado</h2> */}
@@ -7,21 +7,18 @@ export default function ListaModelo({ modelos, onEdit, onDelete }) {
                 <thead>
                     <tr>
                         <th>Descripción</th>
-                        <th>Clasificación</th>
-                        <th>Clave</th>
-                        <th>Modelo</th>
-                        <th>Color</th>
-                        <th>Marca</th>
+                        <th>Estatus</th>
                         <th>Fecha de creación</th>
+                        <th>Fecha de actualización</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                    modelos.map((modelo) => (
-                        <ModeloRow
-                            key={modelo.id_modelo}
-                            modelo={modelo}
+                    colores.map((color) => (
+                        <ColorRow
+                            key={color.id_color}
+                            color={color}
                             onEdit={onEdit}
                             onDelete={onDelete}
                         />

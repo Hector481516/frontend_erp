@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom"
-import Navbar from "../components/Navbar"
 
 function Dashboard() {
 
@@ -15,7 +14,6 @@ function Dashboard() {
     return (
 
         <div>
-            <Navbar />
             <h1>Dashboard</h1>
 
             <button onClick={logout}>

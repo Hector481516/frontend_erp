@@ -1,11 +1,11 @@
-const FastAPI_URL = "http://localhost:8080"
 async function fastapiRequest(endpoint, method = "GET", body = null) {
-    const token=localStorage.getItem("token") 
+    const FastAPI_URL = "http://localhost:8007"
+    const token=localStorage.getItem("token")
     const config = {
         method,
         headers: {
             "Content-Type": "application/json",
-            ...FastAPI_URL(token && { Authorization: `Bearer ${token}` })
+            ...(token && { Authorization: `Bearer ${token}` })
         }
     }
     if (body && method !== "GET") {

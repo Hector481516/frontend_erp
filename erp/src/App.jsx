@@ -2,6 +2,9 @@ import './App.css'
 import LoginPage from "./pages/LoginPage"
 import Dashboard from "./pages/Dashboard"
 import CatalogoModelos from './pages/CatalogoModelos'
+import CatalogoColores from './pages/CatalogoColores'
+import CatalogoMarcas from './pages/CatalogoMarcas'
+import MainLayout from "./layouts/MainLayout"
 import {
     Routes,
     Route,
@@ -13,6 +16,7 @@ function App() {
     const token = localStorage.getItem("token")
     return (
         <Routes>
+            <Route element={<MainLayout />}>
 
             <Route
                 path="/login"
@@ -21,6 +25,14 @@ function App() {
             <Route
                 path="/catalogo_modelos"
                 element={<CatalogoModelos />}
+            />
+            <Route
+                path="/catalogo_colores"
+                element={<CatalogoColores />}
+            />
+            <Route
+                path="/catalogo_marcas"
+                element={<CatalogoMarcas />}
             />
 
             <Route
@@ -44,7 +56,7 @@ function App() {
                     />
                 }
             />
-
+            </Route>
         </Routes>
     )
 

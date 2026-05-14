@@ -4,15 +4,15 @@ import AltaEdicionModelo from '../components/AltaEdicionModelo'
 import Modal from '../components/Modal'
 import ListaModelo from '../components/ListaModelo'
 import toggleModal from '../utils/utils'
-import { getModelos } from '../services/modelos'
+import { getModelos, createModelo } from '../services/modelos'
 const token = localStorage.getItem("token")
 
 function CatalogoModelos() {
     const [isAuthenticated, setIsAuthenticated] = useState(false)
     //Estados modelos
     const [modeloSeleccionado, setModeloSeleccionado] = useState(null);
-    // const [listadoModelos, setListadoModelos] = useState(db);
     const [modelos, setModelos] = useState([]);
+    const [listadoModelos, setListadoModelos] = useState(modelos);
     useEffect(() => {
         cargarModelos();
     }, []);
@@ -23,7 +23,7 @@ function CatalogoModelos() {
     async function cargarModelos() {
         try {
             const data = await getModelos()
-            setModelos(data)
+            setModelos(data.records)
         } catch (error) {
             console.error("Error al cargar modelos:", error)
         }
@@ -66,12 +66,9 @@ function CatalogoModelos() {
         if (modalType === "edit") {
             updateModelo(formData)
         } else {
-            alert("creando modelo")
-            const nuevoModelo = {
-                id: 0,
-                ...formData
-            }
-            setModelos([...modelos, nuevoModelo])
+            createModelo(formData).then(nuevoModelo => {
+                cargarModelos()
+            })
         }
         setIsOpen(false)
     }
