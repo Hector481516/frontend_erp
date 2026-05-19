@@ -12,7 +12,7 @@ export default function Navbar() {
             <div className="navbar-logo">
 
                 <h1>
-                    ERP Store
+                    ERP D&H
                 </h1>
 
             </div>
@@ -26,7 +26,11 @@ export default function Navbar() {
                         Dashboard
                     </Link>
                 </li>
-
+                <li>
+                    <Link to="/productos">
+                        Productos
+                    </Link>
+                </li>
                 <li>
                     <Link to="/catalogo_modelos">
                         Modelos

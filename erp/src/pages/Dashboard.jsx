@@ -15,11 +15,6 @@ function Dashboard() {
 
         <div>
             <h1>Dashboard</h1>
-
-            <button onClick={logout}>
-                Cerrar sesión
-            </button>
-
         </div>
     )
 }

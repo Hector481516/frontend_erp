@@ -92,7 +92,7 @@ table {
 
 th, td {
   padding: 12px;
-  text-align: left;
+  text-align: center;
 }
 
 th {
@@ -139,13 +139,17 @@ tr:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-
+  overflow-y: auto;
   z-index: 1000;
-
+  inset: 0;
   backdrop-filter: blur(4px);
 }
 
 /* Base modal */
+.modal-content {
+  max-height: 90vh;
+  overflow-y: auto;
+}
 
 .modal-container {
   background: #181825;
@@ -195,6 +199,9 @@ tr:hover {
 
 .modal-lg {
   width: 1000px;
+}
+.modal-xl {
+  width: 98%;
 }
 
 /* Modal una sola línea */

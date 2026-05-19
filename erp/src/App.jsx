@@ -5,6 +5,7 @@ import CatalogoModelos from './pages/CatalogoModelos'
 import CatalogoColores from './pages/CatalogoColores'
 import CatalogoMarcas from './pages/CatalogoMarcas'
 import MainLayout from "./layouts/MainLayout"
+import Productos from './pages/Productos'
 import {
     Routes,
     Route,
@@ -33,6 +34,10 @@ function App() {
             <Route
                 path="/catalogo_marcas"
                 element={<CatalogoMarcas />}
+            />
+            <Route
+                path="/productos"
+                element={<Productos />}
             />
 
             <Route

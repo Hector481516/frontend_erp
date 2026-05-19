@@ -1,27 +1,31 @@
-import ModeloRow from "./ModeloRow"
-export default function ListaModelo({ modelos, onEdit, onDelete }) {
+import ProductoRow from "../ProductoRow"
+export default function ListaProductos({ productos, onEdit, onDelete }) {
+    const tallas = ['25', '26', '27', '28', '29']
     return (
         <section className="table-section">
             {/* <h2>Listado</h2> */}
             <table>
                 <thead>
                     <tr>
-                        <th>Marca</th>
                         <th>Descripción</th>
                         <th>Clasificación</th>
                         <th>Clave</th>
                         <th>Modelo</th>
+                        <th>Marca</th>
                         <th>Color</th>
-                        <th>Fecha de creación</th>
+                        <th>Tallas disponibles</th>
+                        <th>Precio compra</th>
+                        <th>Precio venta</th>
+                        <th>Fecha de compra</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                    modelos.map((modelo) => (
-                        <ModeloRow
-                            key={modelo.id_modelo}
-                            modelo={modelo}
+                    productos.map((producto) => (
+                        <ProductoRow
+                            key={producto.id_modelo_detalle}
+                            producto={producto}
                             onEdit={onEdit}
                             onDelete={onDelete}
                         />
