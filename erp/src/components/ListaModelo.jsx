@@ -3,9 +3,10 @@ export default function ListaModelo({ modelos, onEdit, onDelete }) {
     return (
         <section className="table-section">
             {/* <h2>Listado</h2> */}
-            <table>
+            <table className='table-modelos'>
                 <thead>
                     <tr>
+                        <th>Foto</th>
                         <th>Marca</th>
                         <th>Descripción</th>
                         <th>Clasificación</th>
