@@ -6,6 +6,8 @@ import CatalogoColores from './pages/CatalogoColores'
 import CatalogoMarcas from './pages/CatalogoMarcas'
 import MainLayout from "./layouts/MainLayout"
 import Productos from './pages/Productos'
+import Catalogo from './pages/Catalogo'
+import CatalogoPDF from './pages/CatalogoPDF'
 import {
     Routes,
     Route,
@@ -38,6 +40,14 @@ function App() {
             <Route
                 path="/productos"
                 element={<Productos />}
+            />
+            <Route
+                path="/catalogo"
+                element={<Catalogo />}
+            />
+            <Route
+                path="/catalogoPDF"
+                element={<CatalogoPDF />}
             />
 
             <Route

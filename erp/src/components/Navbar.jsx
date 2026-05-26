@@ -46,6 +46,11 @@ export default function Navbar() {
                         Marcas
                     </Link>
                 </li>
+                <li>
+                    <Link to="/catalogo">
+                        Catalogo
+                    </Link>
+                </li>
             </ul>
 
             {/* USER */}

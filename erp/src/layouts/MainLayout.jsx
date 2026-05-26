@@ -1,9 +1,24 @@
-import { Outlet } from "react-router-dom"
+import { Outlet,useLocation  } from "react-router-dom"
 
 import Navbar from "../components/Navbar"
 
 function MainLayout() {
+    const location = useLocation()
 
+    const ocultarNavbar =
+        location.pathname === '/catalogoPDF'
+
+    return (
+
+        <>
+
+            {!ocultarNavbar && <Navbar />}
+
+            <Outlet />
+
+        </>
+
+    )
     return (
 
         <div>

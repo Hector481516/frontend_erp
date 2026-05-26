@@ -4,10 +4,12 @@ import { getProductos } from '../services/productos'
 export function useProductos() {
     const [productos, setProductos] = useState([])
     const [loading, setLoading] = useState(false)
-    async function cargarProductos() {
+    async function cargarProductos(filtros={
+            estatus: 1
+        }) {
         try {
             setLoading(true)
-            const data = await getProductos()
+            const data = await getProductos(filtros)
             setProductos(data.records)
 
         } catch (error) {

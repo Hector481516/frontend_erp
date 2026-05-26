@@ -2,10 +2,12 @@ import ProductCard from '../components/productos/CardProducto'
 import '../styles/productos.css'
 import { useState, useEffect } from 'react'
 import Modal from '../components/Modal'
-import { getProductos } from '../services/productos'
+import { getProductos, apiMarcarVenta} from '../services/productos'
 import { useProductos } from '../hooks/useProductos'
+import { useInventario } from '../hooks/useInventario'
 import { useModal } from '../hooks/useModal'
 import DetalleProducto from '../components/productos/DetalleProducto'
+import VentaProducto from '../components/productos/VentaProducto'
 function Productos() {
     const [productoSeleccionado, setProductoSeleccionado] = useState(null)
     const {
@@ -19,12 +21,29 @@ function Productos() {
         setIsOpen,
         setModalType
     } = useModal()
+    const getTallasByProductoId= useInventario().getTallasByProductoId
     function eventoNuevoProducto() {
         setIsOpen(true)
+        setModalType("nuevo")
+    }
+    const [tallasDisponiblesPorModelo, setTallasDisponiblesPorModelo] = useState([])
+    async function onGuardarVenta(formVenta) {
+        // Aquí puedes manejar la lógica para guardar la venta, por ejemplo, enviando los datos a tu backend
+        console.log("Datos de la venta:", formVenta)
+        await apiMarcarVenta(productoSeleccionado.id_modelo_detalle, formVenta)
+        setIsOpen(false)
     }
     async function onSubmit() {
         setIsOpen(false)
         await cargarProductos()
+    }
+    async function manejarCapturarVenta(producto)
+    {
+        setIsOpen(true)
+        const tallas=await getTallasByProductoId(producto.id_modelo_detalle)
+        setTallasDisponiblesPorModelo(tallas)
+        setProductoSeleccionado(producto)
+        setModalType("venta")
     }
     return (
         <div className="productos-page">
@@ -52,11 +71,22 @@ function Productos() {
                             : "Nuevo Producto"
                     }
                 >
-                    <DetalleProducto
-                        mode={modalType}
-                        producto={productoSeleccionado}
-                        onSubmit={onSubmit}
-                    />
+                    {modalType === "nuevo" && (
+                        <DetalleProducto
+                            mode={modalType}
+                            producto={productoSeleccionado}
+                            onSubmit={onSubmit}
+                        />
+                    )}
+
+                    {
+                        modalType === "venta" && (
+                        <VentaProducto 
+                            producto={productoSeleccionado}
+                            tallas={tallasDisponiblesPorModelo}
+                            onGuardarVenta={onGuardarVenta}
+                        />
+                    )}
                 </Modal>
             </div>
             <div className="search-container">
@@ -77,6 +107,7 @@ function Productos() {
                         <div className="products-grid">
                             {productos.map((product) => (
                                 <ProductCard
+                                    manejarCapturaVenta={manejarCapturarVenta}
                                     key={product.id_modelo_detalle}
                                     product={product}
                                 />
