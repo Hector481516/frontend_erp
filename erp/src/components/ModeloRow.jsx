@@ -5,7 +5,7 @@ function ModeloRow({ modelo, onEdit, onDelete }) {
     const [modeloSeleccionado, setModeloSeleccionado] = useState(modelo);
     const { descripcion,creacion, color, imagen, numero_modelo, tipo_descripcion, clave, clasificacion, marca } = modelo;
     return (
-        <tr>
+        <tr className="modelo-row">
             <td>
                 <img
                       src={`${PATH_IMAGEN_ZAPATOS}${imagen}`}

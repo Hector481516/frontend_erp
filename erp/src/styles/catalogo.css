@@ -4,12 +4,7 @@
 
     padding: 25px;
 
-    background: linear-gradient(
-            135deg,
-            #0f0f1a,
-            #181825,
-            #312e81
-        );
+    background: #0f0f1a;
 
 }
 
@@ -147,7 +142,7 @@
 
 .catalogo-card {
 
-    background: rgb(254, 254, 254);
+    background: #11182B;
 
     backdrop-filter: blur(10px);
 
@@ -188,14 +183,9 @@
 
 .catalogo-img-container {
 
-    height: 220px;
+    height: 280px;
 
-    background:
-        linear-gradient(
-            135deg,
-            #f8fafc,
-            #eef2ff
-        );
+    background:#11182B;
 
     overflow: hidden;
 
@@ -233,7 +223,7 @@
 
 .catalogo-info {
 
-    padding: 18px;
+    padding: 15px;
 
 }
 
@@ -249,9 +239,9 @@
 
 .catalogo-info h3 {
 
-     margin-top: 8px;
+    margin-top: 5px;
 
-    color: #0f172a;
+    color: white;
 
     font-size: 1.08rem;
 
@@ -259,7 +249,7 @@
 
     font-weight: 700;
 
-    min-height: 50px;
+    min-height: 20px;
 
 }
 
@@ -267,7 +257,7 @@
 
     margin-top: 6px;
 
-    color: #64748b;
+    color: #85909f;
 
     font-size: .92rem;
 
@@ -294,7 +284,7 @@
 
 .catalogo-precio strong {
 
-    color: #111827;
+    color: white;
 
     font-size: 1.35rem;
 

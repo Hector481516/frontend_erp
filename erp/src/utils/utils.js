@@ -14,4 +14,41 @@ function toggleModal(modalId, btnId) {
         }
     }
 }
-export default toggleModal
+function convertir_parametros_get(filtros){
+    const params = new URLSearchParams()
+    Object.entries(filtros).forEach(([key, value]) => {
+        if (value !== undefined && value !== null && value !== "") {
+            params.append(key, value)
+        }
+    })
+    return params
+}
+function obtenerFechaHoy() {
+    return new Date().toISOString().split('T')[0]
+}
+function formatearFecha(fecha = new Date()) 
+{
+    return fecha.toISOString().split('T')[0]
+}
+function obtenerRangoMes(fecha = new Date()) {
+
+    const fechaObj = new Date(fecha)
+
+    const inicio = new Date(
+        fechaObj.getFullYear(),
+        fechaObj.getMonth(),
+        1
+    )
+
+    const fin = new Date(
+        fechaObj.getFullYear(),
+        fechaObj.getMonth() + 1,
+        0
+    )
+
+    return {
+        fecha_inicio: formatearFecha(inicio),
+        fecha_fin: formatearFecha(fin)
+    }
+}
+export {toggleModal, convertir_parametros_get, obtenerFechaHoy, formatearFecha, obtenerRangoMes}

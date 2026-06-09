@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import AltaEdicionProductos from '../components/AltaEdicionProductos'
 import Modal from '../components/Modal'
 import ListaProductos from '../components/productos/ListaProductos'
-import toggleModal from '../utils/utils'
+import {toggleModal} from '../utils/utils'
 import { getProductos, createProducto, apiUpdateProducto, apiDeleteProducto } from '../services/productos'
 const token = localStorage.getItem("token")
 

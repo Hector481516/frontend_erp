@@ -8,6 +8,7 @@ import MainLayout from "./layouts/MainLayout"
 import Productos from './pages/Productos'
 import Catalogo from './pages/Catalogo'
 import CatalogoPDF from './pages/CatalogoPDF'
+import Alert from './components/Alert/Alert'
 import {
     Routes,
     Route,
@@ -18,61 +19,64 @@ import {
 function App() {
     const token = localStorage.getItem("token")
     return (
-        <Routes>
-            <Route element={<MainLayout />}>
+        <>  
+            <Alert />
+            <Routes>
+                <Route element={<MainLayout />}>
 
-            <Route
-                path="/login"
-                element={<LoginPage />}
-            />
-            <Route
-                path="/catalogo_modelos"
-                element={<CatalogoModelos />}
-            />
-            <Route
-                path="/catalogo_colores"
-                element={<CatalogoColores />}
-            />
-            <Route
-                path="/catalogo_marcas"
-                element={<CatalogoMarcas />}
-            />
-            <Route
-                path="/productos"
-                element={<Productos />}
-            />
-            <Route
-                path="/catalogo"
-                element={<Catalogo />}
-            />
-            <Route
-                path="/catalogoPDF"
-                element={<CatalogoPDF />}
-            />
+                <Route
+                    path="/login"
+                    element={<LoginPage />}
+                />
+                <Route
+                    path="/catalogo_modelos"
+                    element={<CatalogoModelos />}
+                />
+                <Route
+                    path="/catalogo_colores"
+                    element={<CatalogoColores />}
+                />
+                <Route
+                    path="/catalogo_marcas"
+                    element={<CatalogoMarcas />}
+                />
+                <Route
+                    path="/productos"
+                    element={<Productos />}
+                />
+                <Route
+                    path="/catalogo"
+                    element={<Catalogo />}
+                />
+                <Route
+                    path="/catalogoPDF"
+                    element={<CatalogoPDF />}
+                />
 
-            <Route
-                path="/dashboard"
-                element={
-                    token
-                        ? <Dashboard />
-                        : <Navigate to="/login" />
-                }
-            />
+                <Route
+                    path="/dashboard"
+                    element={
+                        token
+                            ? <Dashboard />
+                            : <Navigate to="/login" />
+                    }
+                />
 
-            <Route
-                path="*"
-                element={
-                    <Navigate
-                        to={
-                            token
-                                ? "/dashboard"
-                                : "/login"
-                        }
-                    />
-                }
-            />
-            </Route>
-        </Routes>
+                <Route
+                    path="*"
+                    element={
+                        <Navigate
+                            to={
+                                token
+                                    ? "/dashboard"
+                                    : "/login"
+                            }
+                        />
+                    }
+                />
+                </Route>
+            </Routes>
+        </>
     )
 
 }

@@ -2,18 +2,6 @@
 
 .nuevo-producto-page {
   min-height: 100vh;
-  padding: 28px;
-
-  background:
-    radial-gradient(circle at top left, rgba(139, 92, 246, 0.18), transparent 32%),
-    radial-gradient(circle at bottom right, rgba(99, 102, 241, 0.16), transparent 30%),
-    linear-gradient(
-      135deg,
-      #060816 0%,
-      #0b1023 40%,
-      #131936 75%,
-      #1b1f46 100%
-    );
 }
 
 .nuevo-producto-container {
@@ -39,22 +27,30 @@
 .nuevo-header p {
   color: #cbd5e1;
 }
+.btn-guarda-productos
+{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
 
 .save-button {
-  height: 52px;
-  padding: 0 24px;
+  /* height: 52px; */
+  /* padding: 0 24px; */
+  margin-top: 20px;;
   border: none;
   border-radius: 18px;
-
   background: linear-gradient(
     135deg,
     #7c3aed,
     #9333ea
   );
-
   color: white;
   font-weight: 700;
   cursor: pointer;
+  display: flex;
+  justify-content: flex-end;
+  margin-left: auto;
 }
 
 .productos-section,
@@ -66,8 +62,8 @@
   border-radius: 28px;
 
   padding: 24px;
-
   backdrop-filter: blur(14px);
+  margin-bottom: 10px;
 }
 
 .section-title {
@@ -87,6 +83,21 @@
   color: #cbd5e1;
 }
 
+.productos-table
+{
+   display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  max-height: calc(100vh - 420px);
+
+  overflow-y: auto;
+
+  padding-right: 6px;
+
+  scroll-behavior: smooth;
+}
+
 .productos-table,
 .carrito-table {
   display: flex;
@@ -101,9 +112,9 @@
   grid-template-columns:
     minmax(195px, 1fr)
     110px
-    90px
-    120px
-    120px
+    65px
+    110px
+    125px
     110px;
 
   gap: 14px;
@@ -152,10 +163,11 @@
   color: #94a3b8;
   font-size: 13px;
 }
-.producto-row
-{
+
+.producto-row {
   align-items: stretch;
 }
+
 .producto-row select,
 .producto-row input {
   height: 50px;
@@ -231,12 +243,58 @@
   color: #94a3b8;
 }
 
+/* ===================================================== */
+/* SCROLL INDEPENDIENTE PARA CARRITO */
+/* ===================================================== */
+
+.carrito-section {
+  position: sticky;
+  top: 20px;
+}
+
+.carrito-table {
+  max-height: 420px;
+  overflow-y: auto;
+
+  padding-right: 6px;
+}
+
+/* Scroll bonito */
+
+.carrito-table::-webkit-scrollbar {
+  width: 8px;
+}
+
+.carrito-table::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.carrito-table::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.18);
+  border-radius: 10px;
+}
+
+.carrito-table::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.3);
+}
+
+/* ===================================================== */
+
 @media (max-width: 1200px) {
 
   .producto-row,
   .carrito-row {
 
     grid-template-columns: 1fr;
+  }
+
+  .carrito-table {
+    max-height: unset;
+    overflow: visible;
+  }
+
+  .carrito-section {
+    position: static;
   }
 }
 
@@ -260,4 +318,36 @@
   .carrito-row {
     padding: 14px;
   }
+}
+
+.input-filtro {
+  width: 320px;
+  height: 48px;
+
+  border-radius: 16px;
+
+  border: 1px solid rgba(255,255,255,0.08);
+
+  background: rgba(255,255,255,0.04);
+
+  color: white;
+
+  padding: 0 16px;
+
+  outline: none;
+
+  font-size: 14px;
+}
+
+.input-filtro::placeholder {
+  color: #94a3b8;
+}
+.section-title {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+}
+
+.input-filtro {
+  width: 100%;
 }

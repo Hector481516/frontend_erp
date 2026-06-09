@@ -3,7 +3,18 @@ export default function ListaModelo({ modelos, onEdit, onDelete }) {
     return (
         <section className="table-section">
             {/* <h2>Listado</h2> */}
-            <table className='table-modelos'>
+            <table className="tabla-modelos">
+                <colgroup>
+                <col style={{ width: '20%' }} />
+                <col style={{ width: '7%' }} />
+                <col style={{ width: '13%' }} />
+                <col style={{ width: '10%' }} />
+                <col style={{ width: '10%' }} />
+                <col style={{ width: '10%' }} />
+                <col style={{ width: '10%' }} />
+                <col style={{ width: '10%' }} />
+                <col style={{ width: '10%' }} />
+            </colgroup>
                 <thead>
                     <tr>
                         <th>Foto</th>

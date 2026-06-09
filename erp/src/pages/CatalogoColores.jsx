@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import AltaEdicionColor from '../components/AltaEdicionColor'
 import Modal from '../components/Modal'
 import ListaColor from '../components/ListaColores'
-import toggleModal from '../utils/utils'
+import {toggleModal} from '../utils/utils'
 import { getColores, createColor, actualizaColor, apiDeleteColor } from '../services/colores'
 const token = localStorage.getItem("token")
 

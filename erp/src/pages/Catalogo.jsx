@@ -100,9 +100,6 @@ function Catalogo() {
                     <h1>
                         Catálogo
                     </h1>
-                    <p>
-                        Explora modelos disponibles
-                    </p>
                 </div>
                 <button className="catalogo-pdf-btn"
                     onClick={generarPDF}>
@@ -197,9 +194,6 @@ function Catalogo() {
                                 alt={item.modelo}
                                 className="catalogo-img"
                             />
-                        </div>
-                        <div className="catalogo-badge">
-                            Disponible
                         </div>
                         {/* INFO */}
                         <div className="catalogo-info">

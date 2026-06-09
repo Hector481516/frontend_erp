@@ -1,7 +1,9 @@
 import fastapiRequest from "./fastapi";
+import {convertir_parametros_get} from "../utils/utils"
 
-export async function getModelos() {
-    return fastapiRequest("/modelos/get_all_modelos")
+export async function getModelos(filtros={}) {
+    const params = convertir_parametros_get(filtros)
+    return fastapiRequest(`/modelos/get_all_modelos?${params.toString()}`,"GET")
 }
 export async function createModelo(modeloData) {
     return fastapiRequest("/modelos/create_modelo", "POST", modeloData)

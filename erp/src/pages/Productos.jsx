@@ -15,6 +15,15 @@ function Productos() {
         loading,
         cargarProductos
     } = useProductos()
+    const [busqueda, setBusqueda] = useState('')
+    const productosFiltrados = productos.filter((producto) => {
+        const texto = busqueda.toLowerCase()
+        return (
+            String(producto.clave).toLowerCase().includes(texto) ||
+            String(producto.modelo).toLowerCase().includes(texto) ||
+            producto.marca?.toLowerCase().includes(texto)
+        )
+    })
     const {
         isOpen,
         modalType,
@@ -29,8 +38,8 @@ function Productos() {
     const [tallasDisponiblesPorModelo, setTallasDisponiblesPorModelo] = useState([])
     async function onGuardarVenta(formVenta) {
         // Aquí puedes manejar la lógica para guardar la venta, por ejemplo, enviando los datos a tu backend
-        console.log("Datos de la venta:", formVenta)
         await apiMarcarVenta(productoSeleccionado.id_modelo_detalle, formVenta)
+        await cargarProductos()
         setIsOpen(false)
     }
     async function onSubmit() {
@@ -94,6 +103,7 @@ function Productos() {
                     type="text"
                     placeholder="Buscar por modelo, clave o marca..."
                     className="search-input"
+                    onChange={(e) => setBusqueda(e.target.value)}
                 />
             </div>
             {
@@ -105,7 +115,7 @@ function Productos() {
                     )
                     : (
                         <div className="products-grid">
-                            {productos.map((product) => (
+                            {productosFiltrados.map((product) => (
                                 <ProductCard
                                     manejarCapturaVenta={manejarCapturarVenta}
                                     key={product.id_modelo_detalle}

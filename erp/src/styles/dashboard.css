@@ -1,0 +1,19 @@
+.dashboard {
+    padding: 24px;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.dashboard-card {
+    background: rgba(15, 23, 42, 0.82);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 24px;
+    padding: 20px;
+    backdrop-filter: blur(14px);
+
+    min-height: 350px;
+}

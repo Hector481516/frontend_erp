@@ -1,5 +1,6 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 function Modal({ modelo, isOpen, onClose, title, children, size }) {
+    const modalRef = useRef();
     useEffect(() => {
         if (isOpen) {
             document.body.style.overflow = 'hidden'
@@ -10,12 +11,32 @@ function Modal({ modelo, isOpen, onClose, title, children, size }) {
             document.body.style.overflow = 'auto'
         }
     }, [isOpen])
+    useEffect(() => {
+        const handleMouseDown = (event) => {
+            if (
+                modalRef.current &&
+                !modalRef.current.contains(event.target)
+            ) {
+                cerrarModal();
+            }
+        };
+
+        document.addEventListener('mousedown', handleMouseDown);
+
+        return () => {
+            document.removeEventListener('mousedown', handleMouseDown);
+        };
+    }, []);
     if (!isOpen) return null
     return (
-        <div className="modal-overlay" onClick={onClose}>
+        <div className="modal-overlay" onMouseDown={(e) => {
+            if (e.target === e.currentTarget) {
+                onClose();
+            }
+        }}>
             <div
                 className={`modal-container ${size || 'modal-md'}`}
-                onClick={(e) => e.stopPropagation()}
+                onMouseDown={(e) => e.stopPropagation()}
             >
                 <div className="modal-header">
 
